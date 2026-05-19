@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Unofficial MMC to Onshape Importer",
-  "version": "2.5",
+  "version": "2.6",
   "description": "Send McMaster STEP files directly to your Onshape workspace. NOT endorsed by McMaster-Carr or Onshape.",
   "icons": {
     "16":  "icon128.png",
