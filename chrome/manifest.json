@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Unofficial MMC to Onshape Importer",
+  "version": "2.5",
+  "description": "Send McMaster STEP files directly to your Onshape workspace. NOT endorsed by McMaster-Carr or Onshape.",
+  "icons": {
+    "16":  "icon128.png",
+    "32":  "icon128.png",
+    "48":  "icon128.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16":  "icon128.png",
+      "32":  "icon128.png",
+      "48":  "icon128.png",
+      "128": "icon128.png"
+    },
+    "default_title": "Unofficial MMC to Onshape Importer"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "permissions": ["tabs", "storage", "sidePanel"],
+  "host_permissions": [
+    "https://cad.onshape.com/api/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [{
+    "matches": ["https://www.mcmaster.com/*"],
+    "js": ["content.js"]
+  }],
+  "options_page": "options.html"
+}

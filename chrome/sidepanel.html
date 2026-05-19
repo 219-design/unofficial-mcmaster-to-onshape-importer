@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>McMaster to Onshape Importer</title>
+  <style>
+    body { font-family: sans-serif; padding: 16px; color: #222; min-width: 240px; }
+    h3 { margin: 0 0 12px; font-size: 15px; }
+    #status { font-size: 12px; color: #555; margin-bottom: 12px; line-height: 1.5; min-height: 40px; }
+    #part-info { font-size: 12px; color: #333; background: #f5f5f5; padding: 8px 10px; border-radius: 4px; margin-bottom: 12px; display: none; }
+    #sendBtn {
+      width: 100%; padding: 11px;
+      background: #00a2ff; color: white;
+      border: none; border-radius: 3px;
+      cursor: pointer; font-size: 13px; font-weight: bold;
+    }
+    #sendBtn:disabled { background: #aaa; cursor: default; }
+    #sendBtn:hover:not(:disabled) { background: #0082cc; }
+    #settingsLink {
+      font-size: 11px; color: #00a2ff; display: block;
+      text-align: right; margin-top: 10px; cursor: pointer;
+      border: none; background: none; padding: 0;
+    }
+    #settingsLink:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h3>McMaster to Onshape Importer</h3>
+  <div id="status">Waiting for a McMaster tab...</div>
+  <div id="part-info"></div>
+  <button id="sendBtn" disabled>Send to Onshape</button>
+  <button id="settingsLink">⚙ Settings</button>
+  <script src="sidepanel.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Unofficial MMC to Onshape Importer Settings</title>
+  <style>
+    body { font-family: sans-serif; padding: 24px; min-width: 380px; color: #222; }
+    h2 { margin: 0 0 6px; font-size: 16px; }
+    p  { margin: 0 0 16px; font-size: 13px; color: #555; }
+    a  { color: #00a2ff; }
+    label { display: block; margin-top: 14px; font-size: 12px; font-weight: bold; color: #444; }
+    input {
+      width: 100%; box-sizing: border-box; margin-top: 4px;
+      padding: 7px 9px; font-size: 13px; font-family: monospace;
+      border: 1px solid #ccc; border-radius: 3px;
+    }
+    input:focus { outline: none; border-color: #00a2ff; box-shadow: 0 0 0 2px #c8e8ff; }
+    .hint { font-size: 11px; color: #888; margin-top: 4px; }
+    button {
+      margin-top: 20px; padding: 9px 20px;
+      background: #00a2ff; color: white;
+      border: none; border-radius: 3px;
+      cursor: pointer; font-size: 13px; font-weight: bold;
+    }
+    button:hover { background: #0082cc; }
+    #status { margin-top: 10px; font-size: 12px; min-height: 16px; }
+    .ok  { color: #2a9d2a; }
+    .err { color: #c0392b; }
+  </style>
+</head>
+<body>
+  <h2>Unofficial MMC to Onshape Importer Settings</h2>
+  <p>First Time Usage:</p>
+  <ol style="margin: 0 0 16px; padding-left: 20px; font-size: 13px; color: #555;">
+    <li>Set up API Keys (<b>one time only</b>)</li>
+    <ol style="margin: 5px 0 16px; padding-left: 20px; font-size: 13px; color: #555; list-style: lower-alpha;">
+      <li>Open Onshape in a new window, leave this window open so you can follow instructions</li>
+      <li>Log into Onshape</li>
+      <li>Click on your avatar in the top right, then click "My account"</li>
+      <li>Click Developer in the left pane</li>
+      <li>Click API Keys, (click "Accept" if you get a popup)</li>
+      <li>Click Create New API Key</li>
+      <li>Give it a useful name like McMasterHelper</li>
+      <li>Check "Application can read your documents" AND "Application can write to your documents"</li>
+      <li>Click Create API Key</li>
+      <li>Copy the access AND secret keys from the popup to the boxes below</li>
+      <li>Click Save</li>
+    </ol>
+    <li>Open OnShape Part Document where you want your McMaster parts to go (it is auto-detected)</li>
+    <li>Open McMaster, find part that you want to add</li>
+    <li>Choose STEP file type</li>
+    <li>Click the extension icon in your browser toolbar to open the side panel (one time).</li>
+    <li>The "🚀 Send to Onshape" button will turn blue once you select the STEP format — just click it!</li>
+    <li>In 1-5 seconds, the file should show up in your Onshape Document as a new tab on the bottom</li>
+  </ol>
+  <p>Regular Usage:</p>
+  <ol style="margin: 0 0 16px; padding-left: 20px; font-size: 13px; color: #555;">
+    <li>Open Onshape Document</li>
+    <li>Open McMaster</li>
+    <li>Left click on the "Unofficial MMC to Onshape Importer" icon to bring up the sidebar (pinning the extension might help)</li>
+    <li>Find a part, select STEP</li>
+    <li>Click the "🚀 Send to Onshape" button in the sidebar</li>
+    <li>In 1-5 seconds, the file should show up in your Onshape Document as a new tab on the bottom</li>
+  </ol>
+  <p>"Advanced" Onshape Usage:</p>
+  <ol style="margin: 0 0 16px; padding-left: 20px; font-size: 13px; color: #555;">
+    <li>The extension auto-detects open Onshape Documents</li>
+    <li>If you have multiple Onshape Documents open, you should use the "Target Onshape Document URL" below.</li>
+    <li>The extension will push to the "Target Onshape Document URL" even if it is not open</li>
+  </ol>
+
+  <label>Access Key
+    <input type="text" id="accessKey" placeholder="on_xxxx..." spellcheck="false" autocomplete="off">
+  </label>
+
+  <label>Secret Key
+    <input type="password" id="secretKey" placeholder="••••••••" autocomplete="new-password">
+    <div class="hint">Keys are stored in your Chrome profile and never shared with any third-party server.</div>
+  </label>
+
+  <hr style="margin: 20px 0; border: none; border-top: 1px solid #e0e0e0;">
+
+  <label>Target Onshape Document URL <span style="font-weight:normal;color:#888">(optional)</span>
+    <input type="text" id="documentUrl" placeholder="https://cad.onshape.com/documents/…" spellcheck="false" autocomplete="off">
+    <div class="hint">If set, parts always go to this document regardless of which tabs are open. Leave blank to auto-detect the open Onshape tab.</div>
+  </label>
+
+  <button id="saveBtn">Save</button>
+  <hr style="margin: 20px 0; border: none; border-top: 1px solid #e0e0e0;"> 
+  <p>For feature requests and bug reporting, contact us at chrome_extension_support@219design.com</p>
+  <p>Repo located here: https://github.com/219-design/unofficial-mcmaster-to-onshape-importer</p>
+  <p style="font-size: 11px; color: #888; border-top: 1px solid #e0e0e0; padding-top: 12px;">
+    Per <a href="https://www.mcmaster.com/termsandconditions/" target="_blank">McMaster-Carr's Terms and Conditions</a>, CAD models are licensed for your own internal use only. Do not share STEP files imported by this extension with third parties, including via shared Onshape workspaces accessible to people outside your organization.
+  </p>
+  <div id="status"></div>
+
+  
+  <script src="options.js"></script>
+</body>
+</html>
