@@ -15,14 +15,32 @@
       border: 1px solid #ccc; border-radius: 3px;
     }
     input:focus { outline: none; border-color: #00a2ff; box-shadow: 0 0 0 2px #c8e8ff; }
-    .hint { font-size: 11px; color: #888; margin-top: 4px; }
-    button {
-      margin-top: 20px; padding: 9px 20px;
-      background: #00a2ff; color: white;
-      border: none; border-radius: 3px;
-      cursor: pointer; font-size: 13px; font-weight: bold;
+    input[readonly] { background: #f5f5f5; color: #555; cursor: default; }
+    input.verified { border-color: #2a9d2a; box-shadow: 0 0 0 2px #d4f0d4; }
+    .key-row { display: flex; gap: 6px; align-items: center; margin-top: 4px; }
+    .key-row input { flex: 1; margin-top: 0; }
+    .edit-btn {
+      padding: 6px 12px; background: #f0f0f0; color: #444;
+      border: 1px solid #ccc; border-radius: 3px; cursor: pointer;
+      font-size: 12px; white-space: nowrap; flex-shrink: 0;
     }
-    button:hover { background: #0082cc; }
+    .edit-btn:hover { background: #e0e0e0; }
+    .edit-btn.done { background: #00a2ff; color: white; border-color: #00a2ff; }
+    .edit-btn.done:hover { background: #0082cc; }
+    textarea {
+      width: 100%; box-sizing: border-box; margin-top: 4px;
+      padding: 7px 9px; font-size: 12px; font-family: monospace;
+      border: 1px solid #ccc; border-radius: 3px;
+      resize: vertical; min-height: 72px; color: #444;
+    }
+    textarea:focus { outline: none; border-color: #00a2ff; box-shadow: 0 0 0 2px #c8e8ff; }
+    textarea.flash-ok { border-color: #2a9d2a; box-shadow: 0 0 0 2px #d4f0d4; }
+    #pasteBox {
+      display: inline-block; vertical-align: middle;
+      width: 200px; min-height: unset; height: 26px;
+      margin: 0 0 0 6px; padding: 2px 2px; resize: none;
+    }
+    .hint { font-size: 11px; color: #888; margin-top: 4px; }
     #status { margin-top: 10px; font-size: 12px; min-height: 16px; }
     .ok  { color: #2a9d2a; }
     .err { color: #c0392b; }
@@ -30,39 +48,32 @@
 </head>
 <body>
   <h2>Unofficial MMC to Onshape Importer Settings</h2>
-  <p>First Time Usage:</p>
+  <h3>First Time Setup (<b>one time only</b>):</h3>
   <ol style="margin: 0 0 16px; padding-left: 20px; font-size: 13px; color: #555;">
-    <li>Set up API Keys (<b>one time only</b>)</li>
-    <ol style="margin: 5px 0 16px; padding-left: 20px; font-size: 13px; color: #555; list-style: lower-alpha;">
-      <li>Open Onshape in a new window, leave this window open so you can follow instructions</li>
-      <li>Log into Onshape</li>
-      <li>Click on your avatar in the top right, then click "My account"</li>
-      <li>Click Developer in the left pane</li>
-      <li>Click API Keys, (click "Accept" if you get a popup)</li>
-      <li>Click Create New API Key</li>
-      <li>Give it a useful name like McMasterHelper</li>
-      <li>Check "Application can read your documents" AND "Application can write to your documents"</li>
-      <li>Click Create API Key</li>
-      <li>Copy the access AND secret keys from the popup to the boxes below</li>
-      <li>Click Save</li>
-    </ol>
+    <li>Open Onshape in a new window, leave this extension window open so you can follow instructions</li>
+    <li>Log into Onshape</li>
+    <li>Click on your avatar in the top right, then click "My account"</li>
+    <li>Click Developer in the left pane</li>
+    <li>Click API Keys, (click "Accept" if you get a popup)</li>
+    <li>Click Create New API Key</li>
+    <li>Give it a useful name like McMasterHelper</li>
+    <li>Under Permissions, check "Application can read your documents" AND "Application can write to your documents"</li>
+    <li>Click Create API Key</li>
+    <li>Copy the text from the API popup and paste here: <textarea id="pasteBox" placeholder="Automatic key extractor" spellcheck="false"></textarea> (you may want to also save this in a secure location)</li> 
+    <li>Check below to see if you get the "Connected as your account" success messagge under the Secret Key box</li>
+    <li>Close the API key popup</li>
+    <li>Now follow the Regular Usage steps</li>
+  </ol>
+  <h3>Regular Usage:</h3>
+  <ol style="margin: 0 0 16px; padding-left: 20px; font-size: 13px; color: #555;">
     <li>Open OnShape Part Document where you want your McMaster parts to go (it is auto-detected)</li>
     <li>Open McMaster, find part that you want to add</li>
-    <li>Choose STEP file type</li>
-    <li>Click the extension icon in your browser toolbar to open the side panel (one time).</li>
-    <li>The "🚀 Send to Onshape" button will turn blue once you select the STEP format — just click it!</li>
-    <li>In 1-5 seconds, the file should show up in your Onshape Document as a new tab on the bottom</li>
-  </ol>
-  <p>Regular Usage:</p>
-  <ol style="margin: 0 0 16px; padding-left: 20px; font-size: 13px; color: #555;">
-    <li>Open Onshape Document</li>
-    <li>Open McMaster</li>
     <li>Left click on the "Unofficial MMC to Onshape Importer" icon to bring up the sidebar (pinning the extension might help)</li>
-    <li>Find a part, select STEP</li>
+    <li>Find a part, choose 3-D STEP as CAD Download option</li>
     <li>Click the "🚀 Send to Onshape" button in the sidebar</li>
     <li>In 1-5 seconds, the file should show up in your Onshape Document as a new tab on the bottom</li>
   </ol>
-  <p>"Advanced" Onshape Usage:</p>
+  <h3>"Advanced" Onshape Usage:</h3>
   <ol style="margin: 0 0 16px; padding-left: 20px; font-size: 13px; color: #555;">
     <li>The extension auto-detects open Onshape Documents</li>
     <li>If you have multiple Onshape Documents open, you should use the "Target Onshape Document URL" below.</li>
@@ -70,13 +81,21 @@
   </ol>
 
   <label>Access Key
-    <input type="text" id="accessKey" placeholder="on_xxxx..." spellcheck="false" autocomplete="off">
+    <div class="key-row">
+      <input type="text" id="accessKey" placeholder="on_xxxx…" spellcheck="false" autocomplete="off" readonly>
+      <button class="edit-btn" id="editAccessBtn">Edit</button>
+    </div>
   </label>
 
   <label>Secret Key
-    <input type="password" id="secretKey" placeholder="••••••••" autocomplete="new-password">
+    <div class="key-row">
+      <input type="password" id="secretKey" placeholder="(not set)" autocomplete="new-password" readonly>
+      <button class="edit-btn" id="editSecretBtn">Edit</button>
+    </div>
     <div class="hint">Keys are stored in your Chrome profile and never shared with any third-party server.</div>
   </label>
+
+  <div id="status"></div>
 
   <hr style="margin: 20px 0; border: none; border-top: 1px solid #e0e0e0;">
 
@@ -85,16 +104,12 @@
     <div class="hint">If set, parts always go to this document regardless of which tabs are open. Leave blank to auto-detect the open Onshape tab.</div>
   </label>
 
-  <button id="saveBtn">Save</button>
-  <hr style="margin: 20px 0; border: none; border-top: 1px solid #e0e0e0;"> 
-  <p>For feature requests and bug reporting, contact us at chrome_extension_support@219design.com</p>
-  <p>Repo located here: https://github.com/219-design/unofficial-mcmaster-to-onshape-importer</p>
+  <hr style="margin: 20px 0; border: none; border-top: 1px solid #e0e0e0;">
+  <p>For feature requests and bug reporting, contact us at <a href="mailto:chrome_extension_support@219design.com">chrome_extension_support@219design.com</a></p>
+  <p>Repo located here: <a href="https://github.com/219-design/unofficial-mcmaster-to-onshape-importer" target="_blank">https://github.com/219-design/unofficial-mcmaster-to-onshape-importer</a></p>
   <p style="font-size: 11px; color: #888; border-top: 1px solid #e0e0e0; padding-top: 12px;">
     Per <a href="https://www.mcmaster.com/termsandconditions/" target="_blank">McMaster-Carr's Terms and Conditions</a>, CAD models are licensed for your own internal use only. Do not share STEP files imported by this extension with third parties, including via shared Onshape workspaces accessible to people outside your organization.
   </p>
-  <div id="status"></div>
-
-  
   <script src="options.js"></script>
 </body>
 </html>
